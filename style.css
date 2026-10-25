@@ -1,0 +1,185 @@
+/* ===== Barvy a základní nastavení ===== */
+:root {
+  --bg: #f3f6f4;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --primary: #16a34a;
+  --primary-dark: #15803d;
+  --error: #dc2626;
+
+  /* Barvy kategorií BMI */
+  --podvaha: #0ea5e9;
+  --norma: #16a34a;
+  --nadvaha: #f59e0b;
+  --obezita: #dc2626;
+
+  --radius: 16px;
+}
+
+/* Tmavý režim – použije se, když ho má uživatel zapnutý v telefonu/PC */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1412;
+    --card: #1a211e;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --border: #2d3632;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ===== Rozvržení ===== */
+.container {
+  max-width: 480px;      /* na PC se stránka nebude roztahovat přes celou šířku */
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--primary);
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== Formulář ===== */
+.field {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.input-wrap {
+  position: relative;
+}
+
+input {
+  width: 100%;
+  font-size: 1.1rem;     /* min. 16px – jinak iPhone při psaní přibližuje stránku */
+  padding: 14px 48px 14px 14px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.unit {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--primary);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.button:hover {
+  background: var(--primary-dark);
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.error {
+  color: var(--error);
+  margin: 0 0 12px;
+  font-size: 0.95rem;
+}
+
+/* ===== Výsledek ===== */
+.result {
+  text-align: center;
+  border-top: 6px solid var(--cat-color, var(--primary));
+}
+
+.result-label {
+  margin: 0;
+  color: var(--muted);
+}
+
+.bmi-value {
+  margin: 4px 0 8px;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--cat-color, var(--text));
+}
+
+.badge {
+  display: inline-block;
+  margin: 0 0 12px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--cat-color, var(--primary));
+}
+
+.result-text {
+  margin: 0;
+}
+
+.note {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Barva podle kategorie – JavaScript nastaví třídu na výsledek */
+.cat-podvaha { --cat-color: var(--podvaha); }
+.cat-norma   { --cat-color: var(--norma); }
+.cat-nadvaha { --cat-color: var(--nadvaha); }
+.cat-obezita { --cat-color: var(--obezita); }
